@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Eid</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            font-family: sans-serif;
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            width: 300px;
+        }
+        .watermark {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+    
+        input { padding: 10px; width: 80%; margin-bottom: 15px; border-radius: 5px; border: none; }
+        button { padding: 10px 20px; cursor: pointer; background: #ff7e5f; color: white; border: none; border-radius: 5px; }
+    
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="step1">
+            <h1>Marhba w1000 marhba!!!</h1>
+            <button onclick="showInput()">Next</button>
+        </div>
+
+        <div id="step2" style="display:none;">
+            <input type="text" id="userName" placeholder="Ktab smitak hna... (mt5afsh)">
+            <br>
+            <button onclick="showGreeting()">Hahiya smiti!</button>
+        </div>
+
+        <h2 id="message"></h2>
+    </div>
+    <div class="watermark">THE BEST MAHMOUH</div>
+
+    <script>
+        function showInput() {
+            document.getElementById("step1").style.display = "none";
+            document.getElementById("step2").style.display = "block";
+        }
+
+        function showGreeting() {
+            var name = document.getElementById("userName").value;
+            if (name === "") {
+                alert("Wata ktab smitk azmr!!!");
+            } else {
+                document.getElementById("step2").style.display = "none";
+                document.getElementById("message").innerText = "Mbrok 3idaaaak a" + name + " t3ayad wt3awd bash ma tmnit" + "🐑✨🎉";
+            }
+        }
+    </script>
+</body>
+</html>
