@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <div id="step1">
+            <h1>salam</h1>
+            <button onclick="showInput()">Next</button>
+        </div>
+
+    <div id="step2" style="display:none;">
+        <input type="text" id="userName" placeholder="Smitk?">
+        <button onclick="showGreeting()">Next</button>
+    </div>
+
+    <h2 id="message"></h2>
+
+    <script>
+        function showInput() {
+            document.getElementById("step1").style.display = "none";
+            document.getElementById("step2").style.display = "block";
+
+        }
+            function showGreeting() {
+                var name = document.getElementById("userName").value;
+                document.getElementById("message").innerText = "Mabrok 3idk a" + name + "!🐑✨🎉";
+                document.getElementById("step2").style.display = "none";
+
+            }
+
+    </script>
+
+    </body>
+</html>
