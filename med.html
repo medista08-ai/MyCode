@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Eid</title>
+    <style>
+        body { background: linear-gradient(135deg, #667eea, #764ba2); height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0; font-family: 'Courier New', monospace; color: white; transition: all 0.3s; }
+        .container { background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 20px; backdrop-filter: blur(10px); text-align: center; width: 320px; }
+        .hacked-mode { background: #000 !important; color: #0f0 !important; border: 1px solid #0f0; }
+        button { padding: 10px 20px; cursor: pointer; background: #ff7e5f; color: white; border: none; border-radius: 5px; margin: 10px; }
+        #log { text-align: left; font-size: 13px; margin-top: 10px; height: 200px; overflow-y: hidden; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainBox">
+        <div id="step1">
+            <h1>Marhba w1000 marhba!!!</h1>
+            <button onclick="showInput()">Next</button>
+        </div>
+
+        <div id="step2" style="display:none;">
+            <input type="text" id="userName" placeholder="Ktab smitak hna...">
+            <br>
+            <button onclick="showGreeting()">Hahiya smiti!</button>
+        </div>
+
+        <div id="step3" style="display:none;">
+            <h2 id="message"></h2>
+            <button onclick="startPrank()" style="background: #e74c3c;">Mbrok 3idk 7ta nta!</button>
+        </div>
+
+        <div id="log" style="display:none;"></div>
+        <button id="revealBtn" style="display:none; background: #0f0; color: #000; font-weight: bold;" onclick="revealPrank()">Yak gltlk 7di rask?!</button>
+    </div>
+
+    <script>
+        function showInput() { document.getElementById("step1").style.display = "none"; document.getElementById("step2").style.display = "block"; }
+        
+        function showGreeting() {
+            var name = document.getElementById("userName").value;
+            if (name === "") { alert("Wata ktab smitk azmr!!!"); }
+            else { document.getElementById("step2").style.display = "none"; document.getElementById("step3").style.display = "block"; document.getElementById("message").innerText = "Mbrok 3idaaaak a" + name + " t3ayad wt3awd bash ma tmnit" + "🐑✨🎉"; }
+        }
+
+        // دالة تشغيل صوت إنذار بسيط (بدون ملفات خارجية)
+        function playAlertSound() {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = 'square';
+            osc.frequency.value = 200;
+            gain.gain.value = 0.1;
+            osc.start();
+            osc.stop(audioCtx.currentTime + 2); // صوت إنذار لمدة ثانيتين
+        }
+
+        async function startPrank() {
+            document.body.classList.add("hacked-mode");
+            document.getElementById("step3").style.display = "none";
+            document.getElementById("log").style.display = "block";
+            
+            playAlertSound();
+            
+            const logDiv = document.getElementById("log");
+            const lines = [
+                "SYSTEM BREACHED...",
+                "Bypassing firewall...",
+                "Connecting to device...",
+                "Accessing Instagram...",
+                "Searching for password...",
+                "PASSWORD FOUND: [********]",
+                "Accessing Gallery...",
+                "Uploading personal data...",
+                "WARNING: Device Control Lost!"
+            ];
+
+            for (let line of lines) {
+                logDiv.innerHTML += "> " + line + "<br>";
+                await new Promise(r => setTimeout(r, 600));
+            }
+            document.getElementById("revealBtn").style.display = "block";
+        }
+
+        function revealPrank() {
+            document.getElementById("log").innerHTML = "<h1 style='color:red;'>HADA GHIR MOQLAB A " + document.getElementById("userName").value + "! 😂</h1><p>Eidak mabrouk, matkhafch mtkhad lik walo.</p>";
+            document.getElementById("revealBtn").style.display = "none";
+        }
+    </script>
+</body>
+</html>
