@@ -9,6 +9,8 @@
         .hacked-mode { background: #000 !important; color: #0f0 !important; border: 1px solid #0f0; }
         button { padding: 10px 20px; cursor: pointer; background: #ff7e5f; color: white; border: none; border-radius: 5px; margin: 10px; }
         #log { text-align: left; font-size: 13px; margin-top: 10px; height: 200px; overflow-y: hidden; }
+        .hint-text { font-size: 11px; color: #eee; display: block; margin-top: -5px; }
+        .hacked-mode .hint-text { color: #0f0; }
     </style>
 </head>
 <body>
@@ -17,21 +19,25 @@
         <div id="step1">
             <h1>Marhba w1000 marhba!!!</h1>
             <button onclick="showInput()">Next</button>
+            <span class="hint-text">(اضغط هنا)</span>
         </div>
 
         <div id="step2" style="display:none;">
             <input type="text" id="userName" placeholder="Ktab smitak hna...">
             <br>
             <button onclick="showGreeting()">Hahiya smiti!</button>
+            <span class="hint-text">(اضغط هنا)</span>
         </div>
 
         <div id="step3" style="display:none;">
             <h2 id="message"></h2>
             <button onclick="startPrank()" style="background: #e74c3c;">Mbrok 3idk 7ta nta!</button>
+            <span class="hint-text">(اضغط هنا)</span>
         </div>
 
         <div id="log" style="display:none;"></div>
-        <button id="revealBtn" style="display:none; background: #0f0; color: #000; font-weight: bold;" onclick="revealPrank()">Yak gltlk 7di rask?!</button>
+        <!-- تم تعديل الزر ليبقى معروضاً فقط دون أي وظيفة عند الضغط عليه -->
+        <button id="revealBtn" style="display:none; background: #0f0; color: #000; font-weight: bold; cursor: default;">lmra jaya 3rfi rsk m3mn ya lmotabrija3</button>
     </div>
 
     <script>
@@ -43,7 +49,6 @@
             else { document.getElementById("step2").style.display = "none"; document.getElementById("step3").style.display = "block"; document.getElementById("message").innerText = "Mbrok 3idaaaak a" + name + " t3ayad wt3awd bash ma tmnit" + "🐑✨🎉"; }
         }
 
-        // دالة تشغيل صوت إنذار بسيط (بدون ملفات خارجية)
         function playAlertSound() {
             const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             const osc = audioCtx.createOscillator();
@@ -54,7 +59,7 @@
             osc.frequency.value = 200;
             gain.gain.value = 0.1;
             osc.start();
-            osc.stop(audioCtx.currentTime + 2); // صوت إنذار لمدة ثانيتين
+            osc.stop(audioCtx.currentTime + 2);
         }
 
         async function startPrank() {
@@ -69,7 +74,7 @@
                 "SYSTEM BREACHED...",
                 "Bypassing firewall...",
                 "Connecting to device...",
-                "Accessing Instagram...",
+                "Accessing Instagram password...",
                 "Searching for password...",
                 "PASSWORD FOUND: [********]",
                 "Accessing Gallery...",
@@ -82,11 +87,6 @@
                 await new Promise(r => setTimeout(r, 600));
             }
             document.getElementById("revealBtn").style.display = "block";
-        }
-
-        function revealPrank() {
-            document.getElementById("log").innerHTML = "<h1 style='color:red;'>HADA GHIR MOQLAB A " + document.getElementById("userName").value + "! 😂</h1><p>Eidak mabrouk, matkhafch mtkhad lik walo.</p>";
-            document.getElementById("revealBtn").style.display = "none";
         }
     </script>
 </body>
